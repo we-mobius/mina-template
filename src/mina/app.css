@@ -1,0 +1,10 @@
+/** app.wxss **/
+@import "../statics/styles/static.css";
+@import "@we-mobius/mobius-ui/src/statics/styles/static.css";
+@import "./_common.css";
+
+page {
+  page: "app";
+  color: #fff;
+  background: #2c2c47;
+}

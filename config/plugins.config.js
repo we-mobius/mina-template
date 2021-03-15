@@ -2,6 +2,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { getMobiusConfig } from './mobius.config.js'
+import { MINAWebpackPlugin } from './MINAWebpack.plugin.js'
 
 // All files inside webpack's output.path directory will be removed once, but the
 // directory itself will not be. If using webpack 4+'s default configuration,
@@ -66,7 +67,9 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   openAnalyzer: false
 })
 
-export const getDevelopmentPlugins = () => [indexHtmlPack]
-export const getBuildPlugins = () => [commonClean, indexHtmlPack]
-export const getProductionPlugins = () => [commonClean, indexHtmlPack, bundleAnalyzer]
+const MINAWebpack = new MINAWebpackPlugin()
+
+export const getDevelopmentPlugins = () => [indexHtmlPack, MINAWebpack]
+export const getBuildPlugins = () => [commonClean, indexHtmlPack, MINAWebpack]
+export const getProductionPlugins = () => [commonClean, indexHtmlPack, bundleAnalyzer, MINAWebpack]
 export const getReleasePlugins = () => [commonClean]
