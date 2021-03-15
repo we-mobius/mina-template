@@ -75,8 +75,8 @@ const minaConfig = {
     ]
   },
   plugins: [
-    // do not use commonCleanPlugin & htmlWebpackPlugin
-    ...getBuildPlugins().slice(2),
+    // do not use htmlWebpackPlugin
+    ...getBuildPlugins().slice(1),
     // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
     new CopyPlugin([
       {
@@ -121,7 +121,7 @@ const webConfig = {
     ]
   },
   plugins: [
-    ...getBuildPlugins().splice(0, 2),
+    ...getBuildPlugins().splice(0, 1),
     // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
     new CopyPlugin([
       {

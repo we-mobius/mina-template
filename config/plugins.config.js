@@ -70,6 +70,6 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
 const MINAWebpack = new MINAWebpackPlugin()
 
 export const getDevelopmentPlugins = () => [indexHtmlPack, MINAWebpack]
-export const getBuildPlugins = () => [commonClean, indexHtmlPack, MINAWebpack]
-export const getProductionPlugins = () => [commonClean, indexHtmlPack, bundleAnalyzer, MINAWebpack]
+export const getBuildPlugins = () => [indexHtmlPack, MINAWebpack]
+export const getProductionPlugins = () => [indexHtmlPack, bundleAnalyzer, MINAWebpack]
 export const getReleasePlugins = () => [commonClean]

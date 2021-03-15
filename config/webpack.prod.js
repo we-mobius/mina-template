@@ -98,7 +98,7 @@ const minaConfig = {
   },
   plugins: [
     // do not use htmlWebpackPlugin
-    ...getProductionPlugins().slice(3),
+    ...getProductionPlugins().slice(2),
     // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
     new CopyPlugin([
       {
@@ -152,7 +152,7 @@ const webConfig = {
     ]
   },
   plugins: [
-    ...getProductionPlugins().splice(0, 2),
+    ...getProductionPlugins().splice(0, 1),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash:10].css',
       chunkFilename: 'styles/[id].[contenthash:10].css'

@@ -1,0 +1,2 @@
+(()=>{"use strict";Page({data:{text:"This is page data.",message:"Hello, MINA template! Home page!!"},onLoad:function(n){},onShow:function(){},onReady:function(){},onHide:function(){},onUnload:function(){},onPullDownRefresh:function(){},onReachBottom:function(){},onShareAppMessage:function(){},onPageScroll:function(){},onResize:function(){},onTabItemTap(n){},viewTap:function(){this.setData({text:"Set some data for updating view."},(function(){}))},customData:{hi:"MINA"}})})();
+//# sourceMappingURL=home.js.map
