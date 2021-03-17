@@ -4,12 +4,11 @@ const { themeRD } = getThemeService('app')
 
 Page({
   data: {
-    message: 'Hello, MINA template! Home page!',
+    message: 'Hello, MINA template! Me page!',
     theme: ''
   },
-  
   onLoad: function (options) {
-    console.log('[page launch] home')
+    console.log('[page launch] me')
     themeRD.subscribe(({ value }) => {
       this.setData({ theme: value })
     })
