@@ -1,7 +1,6 @@
 # Todos
 
-- [x] 支持中文文档
-  - [x] 新建相关中文文档文件
-  - [x] 在当前 README 头部添加各语种文档链接
-- [ ] 添加对依赖项目的感谢
-  - [ ] Homecomputer Fonts
+- [ ] 支持 workers
+  - 官方文档：https://developers.weixin.qq.com/miniprogram/dev/framework/workers.html
+- [ ] 完善 Mobius MINA 基础库
+  - [ ] 使用 Atom 包装 Page 和 App
