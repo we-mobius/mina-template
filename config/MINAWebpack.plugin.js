@@ -104,7 +104,12 @@ export class MINAWebpackPlugin {
   applyEntry (compiler, done) {
     const { context, entry } = compiler.options
     console.log('[applyEntries] start!')
-    this.entries = { ...entry, ...grabEntries(context) }
+
+    try {
+      this.entries = { ...entry, ...grabEntries(context) }
+    } catch (e) {
+      console.log(e)
+    }
 
     Object.entries(this.entries)
       .filter(([name, detail]) => detail.import.endsWith('.js'))
