@@ -1,1 +1,3 @@
-<view>{{message}}!!!!</view>
+<view class="mobius-base mobius-size--fullview mobius-transition--none" data-theme="{{theme}}">
+  <view>{{message}}</view>
+</view>

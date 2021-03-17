@@ -2,6 +2,43 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/mina/base/index.js":
+/*!********************************!*\
+  !*** ./src/mina/base/index.js ***!
+  \********************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "makeThemeService": () => (/* binding */ makeThemeService),
+/* harmony export */   "getThemeService": () => (/* binding */ getThemeService)
+/* harmony export */ });
+/* harmony import */ var MobiusUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! MobiusUtils */ "../node_modules/@we-mobius/mobius-utils/src/es/atom/mediators/replay.mediator.js");
+/* harmony import */ var MobiusUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! MobiusUtils */ "../node_modules/@we-mobius/mobius-utils/src/es/atom/atoms/data.atom.js");
+// Mobius flavor Base Library for MINA development
+
+const makeThemeService = () => {
+  // initial current theme state when first called
+  const initialTheme = wx.getSystemInfoSync().theme;
+  const themeRD = (0,MobiusUtils__WEBPACK_IMPORTED_MODULE_0__.replayWithLatest)(1, MobiusUtils__WEBPACK_IMPORTED_MODULE_1__.Data.of(initialTheme)); // update theme state when theme change happen
+
+  wx.onThemeChange(({
+    theme
+  }) => {
+    themeRD.triggerValue(theme);
+  });
+  return {
+    themeRD
+  };
+};
+const themeServices = {};
+const getThemeService = scope => {
+  themeServices[scope] = themeServices[scope] || makeThemeService();
+  return themeServices[scope];
+};
+
+/***/ }),
+
 /***/ "../node_modules/@we-mobius/mobius-utils/src/es/atom/atoms/base.atom.js":
 /*!******************************************************************************!*\
   !*** ../node_modules/@we-mobius/mobius-utils/src/es/atom/atoms/base.atom.js ***!
@@ -1254,38 +1291,41 @@ var __webpack_exports__ = {};
   !*** ./src/mina/app.js ***!
   \*************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var MobiusUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! MobiusUtils */ "../node_modules/@we-mobius/mobius-utils/src/es/atom/mediators/replay.mediator.js");
-/* harmony import */ var MobiusUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! MobiusUtils */ "../node_modules/@we-mobius/mobius-utils/src/es/atom/atoms/data.atom.js");
-/* eslint-disable no-undef */
+/* harmony import */ var MobiusUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! MobiusUtils */ "../node_modules/@we-mobius/mobius-utils/src/es/atom/mediators/replay.mediator.js");
+/* harmony import */ var MobiusUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! MobiusUtils */ "../node_modules/@we-mobius/mobius-utils/src/es/atom/atoms/data.atom.js");
+/* harmony import */ var _base_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base/index.js */ "./src/mina/base/index.js");
 
 
-const author = (0,MobiusUtils__WEBPACK_IMPORTED_MODULE_0__.replayWithLatest)(1, MobiusUtils__WEBPACK_IMPORTED_MODULE_1__.Data.of('cigaret')); // app.js
-
+(0,_base_index_js__WEBPACK_IMPORTED_MODULE_0__.getThemeService)('app');
+const whisperRD = (0,MobiusUtils__WEBPACK_IMPORTED_MODULE_1__.replayWithLatest)(1, MobiusUtils__WEBPACK_IMPORTED_MODULE_2__.Data.of('The owner is looking for a job as a product manager | business manager.\n\nFor a quickest preview of his info, check https://www.cigaret.world'));
 App({
   onLaunch(options) {
-    console.log('[app lunch]');
-    author.subscribe(({
-      value
+    console.log('[app launch]');
+    whisperRD.subscribe(({
+      value: whisper
     }) => {
-      console.warn(value);
-    }); // Do something initial when launch.ggg
+      console.log(whisper);
+    });
   },
 
-  onShow(options) {// Do something when show.
+  onError(error) {
+    console.log(`[app] unhandled error occured `, error);
   },
 
-  onHide() {// Do something when hide.
+  onPageNotFound({
+    path,
+    isEntryPage
+  }) {
+    console.log(`[app] page '${path}' is not found ${isEntryPage ? ' is entry page.' : ''}`);
   },
 
-  onError(msg) {
-    console.log(msg);
-  },
+  onUnhandledRejection({
+    reason
+  }) {
+    console.log(`[app] unhandled rejection caught `, reason);
+  }
 
-  globalData: 'I am global data!'
-}); // xxx.js
-
-const appInstance = getApp();
-console.log(appInstance.globalData); // I am global data
+});
 })();
 
 /******/ })()

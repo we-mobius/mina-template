@@ -1287,9 +1287,9 @@ const noop = v => {}
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*************************************!*\
-  !*** ./src/mina/pages/home/home.js ***!
-  \*************************************/
+/*!*********************************!*\
+  !*** ./src/mina/pages/me/me.js ***!
+  \*********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var MINA_base_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! MINA/base/index.js */ "./src/mina/base/index.js");
 
@@ -1298,11 +1298,11 @@ const {
 } = (0,MINA_base_index_js__WEBPACK_IMPORTED_MODULE_0__.getThemeService)('app');
 Page({
   data: {
-    message: 'Hello, MINA template! Home page!',
+    message: 'Hello, MINA template! Me page!',
     theme: ''
   },
   onLoad: function (options) {
-    console.log('[page launch] home');
+    console.log('[page launch] me');
     themeRD.subscribe(({
       value
     }) => {
@@ -1316,4 +1316,4 @@ Page({
 
 /******/ })()
 ;
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=me.js.map
