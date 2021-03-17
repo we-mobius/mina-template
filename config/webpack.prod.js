@@ -116,6 +116,10 @@ const minaConfig = {
         to: PATHS.output,
         toType: 'dir',
         ignore: ['**/*.js', '**/*.css']
+      }, {
+        from: './src/mina/workers',
+        to: path.resolve(PATHS.output, './workers'),
+        toType: 'dir'
       }
     ])
   ]
