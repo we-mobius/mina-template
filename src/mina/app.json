@@ -69,5 +69,13 @@
   "lazyCodeLoading": "requiredComponents",
   "singlePage": {
     "navigationBarFit": "float"
-  }
+  },
+  "supportedMaterials": [
+    {
+      "materialType": "text/html",
+      "name": "用${nickname}打开",
+      "desc": "将网页存为书签 | 管理书签",
+      "path": "pages/home/home"
+    }
+  ]
 }
