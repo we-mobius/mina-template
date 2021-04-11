@@ -27,6 +27,15 @@
       ],
       "MINA/*": [
         "./src/mina/*"
+      ],
+      "Statics/*": [
+        "./src/statics/*"
+      ],
+      "Images/*": [
+        "./src/statics/images/*"
+      ],
+      "Styles/*": [
+        "./src/statics/styles/*"
       ]
     }
   },
