@@ -18,6 +18,9 @@ const reusedConfigs = {
   mode: 'production',
   optimization: {
     minimize: true,
+    providedExports: true,
+    usedExports: true,
+    sideEffects: true,
     minimizer: [
       new TerserPlugin({
         parallel: true,
@@ -89,7 +92,8 @@ const minaConfig = {
             }
           },
           'postcss-loader'
-        ]
+        ],
+        sideEffects: true
       },
       {
         oneOf: [...getProductionLoaders()]
