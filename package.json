@@ -1,30 +1,32 @@
 {
-  "name": "template",
+  "name": "mina-template",
   "version": "0.1.0",
-  "description": "Mobius flavor project templates.",
+  "description": "Mobius flavor MINA project templates.",
   "type": "module",
   "main": "./src/main.js",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
+      "require": "./release/***.umd.js",
       "import": "./src/main.js",
+      "node": "./src/main.js",
       "default": "./src/main.js"
     },
     "./module": "./src/main.js",
     "./es": "./src/main.js",
-    "./cjs": "./dist/cjs/index.js",
-    "./module/": "./src/",
-    "./es/": "./src/",
-    "./cjs/": "./src/cjs/",
-    "./src/": "./src/",
-    "./dist/": "./dist/"
+    "./module/*": "./src/es/*.js",
+    "./es/*": "./src/es/*.js",
+    "./src/*": "./src/*.js",
+    "./dist/*": "./dist/*.js",
+    "./release/*": "./release/*.js",
+    "./package.json": "./package.json"
   },
   "module": "./src/main.js",
   "keywords": [
     ""
   ],
   "directories": {
-    "doc": "docs"
+    "doc": "./docs",
+    "bin": "./bin"
   },
   "scripts": {
     "cz-commit": "npm run lint && npx git-cz",
@@ -47,18 +49,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/we-mobius/template.git"
+    "url": "git+https://github.com/we-mobius/mina-template.git"
   },
   "author": {
     "name": "kongxiangyan",
     "email": "kcigaret@outlook.com",
-    "url": "https://cigaret.world/"
+    "url": "https://www.cigaret.world/"
   },
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/we-mobius/template/issues"
+    "url": "https://github.com/we-mobius/mina-template/issues"
   },
-  "homepage": "https://github.com/we-mobius/template#readme",
+  "homepage": "https://github.com/we-mobius/mina-template#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.10.5",
@@ -119,9 +121,12 @@
   "jsdelivr": "./release/***.js",
   "files": [
     "/release/*",
-    "/public/*",
     "/dist/*",
-    "/docs/*"
+    "/build/*",
+    "/src/*",
+    "/public/*",
+    "/docs/*",
+    "/bin/*"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
@@ -132,7 +137,6 @@
     "./statics/**"
   ],
   "dependencies": {
-    "lit-html": "^1.3.0",
-    "rxjs": "^6.6.2"
+    "lit-html": "^1.3.0"
   }
 }

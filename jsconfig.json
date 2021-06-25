@@ -13,6 +13,9 @@
       "MobiusJS": [
         "./src/libs/mobius-js.js"
       ],
+      "MobiusMINA": [
+        "./src/libs/mobius-mina.js"
+      ],
       "Business/*": [
         "./src/business/*"
       ],
@@ -43,6 +46,8 @@
     "node_modules",
     "dist",
     "build",
-    "dev"
+    "dev",
+    "release",
+    "scripts"
   ]
 }
