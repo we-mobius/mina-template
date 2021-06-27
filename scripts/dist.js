@@ -1,14 +1,12 @@
-import { emptyDirSync, copyFileSync, rootResolvePath } from './utils.js'
+import { emptyDirSync, rootResolvePath } from './utils.js'
 import { getWebpackConfig } from '../webpack.config.js'
 import webpack from 'webpack'
-import path from 'path'
 import { argv } from 'process'
 
 const BUILD_TYPE = argv[2] ? argv[2].split('=')[1] : ''
 
 const BUILD_MODE = 'production'
 const BUILD_TARGET_DES = 'dist'
-const resolvePathInDes = (...paths) => path.join(BUILD_TARGET_DES, ...paths)
 emptyDirSync(rootResolvePath(BUILD_TARGET_DES))
 
 const webpackConfig = getWebpackConfig({ mode: BUILD_MODE })
@@ -71,20 +69,6 @@ const packMINA = () => {
   })
 }
 
-const copy = () => {
-  return new Promise((resolve) => {
-    copyFileSync(
-      rootResolvePath('src/statics/images/thoughts-daily.png'),
-      rootResolvePath(resolvePathInDes('statics/images/thoughts-daily.png'))
-    )
-    copyFileSync(
-      rootResolvePath('src/statics/images/beian.png'),
-      rootResolvePath(resolvePathInDes('statics/images/beian.png'))
-    )
-    resolve()
-  })
-}
-
 const pack = () => {
   let childTask = []
   if (BUILD_TYPE === 'web') {
@@ -97,7 +81,6 @@ const pack = () => {
 
   // execute
   Promise.all(childTask)
-    .then(() => copy())
     .then(() => {
       console.log(`${BUILD_MODE} Build Complete!!!`)
     })

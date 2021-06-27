@@ -1,4 +1,4 @@
-import { getThemeService } from 'MINA/base/index.js'
+import { getThemeService } from 'MINA/common/index.js'
 
 const { themeRD } = getThemeService('app')
 
@@ -7,7 +7,7 @@ Page({
     message: 'Hello, MINA template! Home page!',
     theme: ''
   },
-  
+
   onLoad: function (options) {
     console.log('[page launch] home')
     themeRD.subscribe(({ value }) => {

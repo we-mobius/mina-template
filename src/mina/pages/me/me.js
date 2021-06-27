@@ -1,4 +1,4 @@
-import { getThemeService } from 'MINA/base/index.js'
+import { getThemeService } from 'MINA/common/index.js'
 
 const { themeRD } = getThemeService('app')
 

@@ -60,6 +60,14 @@ export const getReleaseConfig = () => ({
         toType: 'dir'
       },
       {
+        from: './src/statics/images/',
+        // to 可以写相对 webpack.config.output.path 的路径，比如 './statics/images/'
+        // 但 CopyPlugin 插件的文档中没有明确说明 to 最终路径的计算规则
+        // 所以我个人推荐手动计算绝对路径，如下
+        to: path.resolve(PATHS.output, './statics/images/'),
+        toType: 'dir'
+      },
+      {
         from: './src/statics/styles/fonts/',
         to: path.resolve(PATHS.output, './statics/styles/fonts/'),
         toType: 'dir'

@@ -1,5 +1,5 @@
 import 'Styles/style.css'
-import '@we-mobius/mobius-ui/src/statics/styles/static.css'
+import '@we-mobius/mobius-ui/css'
 
 import { completeStateRD } from 'MobiusUtils'
 import { makeAppContainerRD, runApp } from 'MobiusUI'

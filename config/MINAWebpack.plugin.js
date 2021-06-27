@@ -149,10 +149,11 @@ export class MINAWebpackPlugin {
       // beforeChunkAssets 事件在 compilation.createChunkAssets 方法之前被触发
       compilation.hooks.beforeChunkAssets.tap('MINAWebpackPlugin', () => {
         const chunks = [...compilation.chunks]
-        compilation.chunks = new Set([...chunks.filter(({ name }, idx) => {
+        compilation.chunks = new Set([...chunks.filter((chunk, idx) => {
+          const { name } = chunk
           // 移除该 chunk, 使之不会生成对应的 asset，也就不会输出文件
           // 如果没有这一步，最后会生成  __assets_chunk_name__[idx].js 文件
-          return !name.startsWith('__assets_chunk_name__')
+          return name && !name.startsWith('__assets_chunk_name__')
         })])
       })
     })

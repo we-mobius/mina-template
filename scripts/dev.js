@@ -1,7 +1,6 @@
-import { emptyDirSync, rootResolvePath, copyFileSync } from './utils.js'
+import { emptyDirSync, rootResolvePath } from './utils.js'
 
 import webpack from 'webpack'
-import path from 'path'
 import WebpackDevServer from 'webpack-dev-server'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -12,7 +11,6 @@ const BUILD_TYPE = argv[2] ? argv[2].split('=')[1] : ''
 
 const BUILD_MODE = 'development'
 const BUILD_TARGET_DES = 'dev'
-const resolvePathInDes = (...paths) => path.join(BUILD_TARGET_DES, ...paths)
 emptyDirSync(rootResolvePath(BUILD_TARGET_DES))
 
 // ref: https://github.com/webpack/webpack-dev-server/blob/master/examples/api/simple/server.js
@@ -61,17 +59,9 @@ const startWeb = () => {
       )
     })
 
-    // webpack 打包结束之后 copy 必要的静态文件
+    // webpack 打包结束之后做一些事情
     compiler.hooks.done.tap('MobiusCopyPlugin', stats => {
-      copyFileSync(
-        rootResolvePath('src/statics/images/thoughts-daily.png'),
-        rootResolvePath(resolvePathInDes('statics/images/thoughts-daily.png'))
-      )
-      copyFileSync(
-        rootResolvePath('src/statics/images/beian.png'),
-        rootResolvePath(resolvePathInDes('statics/images/beian.png'))
-      )
-      console.log('【MobiusCopyPlugin】 extra files copyed!')
+      console.log('【MobiusCopyPlugin】 compiled!')
     })
 
     const server = new WebpackDevServer(

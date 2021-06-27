@@ -3,6 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { getMobiusConfig } from './mobius.config.js'
 import { MINAWebpackPlugin } from './MINAWebpack.plugin.js'
+import { MINARuntimePlugin } from './MINARuntime.plugin.js'
 
 // All files inside webpack's output.path directory will be removed once, but the
 // directory itself will not be. If using webpack 4+'s default configuration,
@@ -59,17 +60,22 @@ const htmlWebpackPluginFactory = ({ pageName = 'index', templateName, keywords =
 const indexHtmlPack = htmlWebpackPluginFactory({
   pageName: 'index',
   templateName: 'index',
-  keywords: ['index', 'static']
+  keywords: ['index', 'static', 'libs', 'common', 'runtime', 'vendor']
 })
 
-const bundleAnalyzer = new BundleAnalyzerPlugin({
+const bundleAnalyzerForWeb = new BundleAnalyzerPlugin({
+  analyzerMode: 'static',
+  openAnalyzer: false
+})
+const bundleAnalyzerForMINA = new BundleAnalyzerPlugin({
   analyzerMode: 'static',
   openAnalyzer: false
 })
 
 const MINAWebpack = new MINAWebpackPlugin()
+const MINARuntime = new MINARuntimePlugin()
 
-export const getDevelopmentPlugins = () => [indexHtmlPack, MINAWebpack]
-export const getBuildPlugins = () => [indexHtmlPack, MINAWebpack]
-export const getProductionPlugins = () => [indexHtmlPack, bundleAnalyzer, MINAWebpack]
+export const getDevelopmentPlugins = () => [indexHtmlPack, MINAWebpack, MINARuntime]
+export const getBuildPlugins = () => [indexHtmlPack, MINAWebpack, MINARuntime]
+export const getProductionPlugins = () => [indexHtmlPack, bundleAnalyzerForWeb, MINAWebpack, MINARuntime, bundleAnalyzerForMINA]
 export const getReleasePlugins = () => [commonClean]

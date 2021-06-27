@@ -1,11 +1,9 @@
-import { emptyDirSync, copyFileSync, rootResolvePath } from './utils.js'
+import { emptyDirSync, rootResolvePath } from './utils.js'
 import { getWebpackConfig } from '../webpack.config.js'
 import webpack from 'webpack'
-import path from 'path'
 
 const BUILD_MODE = 'release'
 const BUILD_TARGET_DES = 'release'
-const resolvePathInDes = (...paths) => path.join(BUILD_TARGET_DES, ...paths)
 
 const empty = () => {
   return new Promise((resolve) => {
@@ -42,24 +40,9 @@ const pack = () => {
   })
 }
 
-const copy = () => {
-  return new Promise((resolve) => {
-    copyFileSync(
-      rootResolvePath('src/statics/images/thoughts-daily.png'),
-      rootResolvePath(resolvePathInDes('statics/images/thoughts-daily.png'))
-    )
-    copyFileSync(
-      rootResolvePath('src/statics/images/beian.png'),
-      rootResolvePath(resolvePathInDes('statics/images/beian.png'))
-    )
-    resolve()
-  })
-}
-
 // execute
 empty()
   .then(() => pack())
-  .then(() => copy())
   .then(() => {
     console.log(`${BUILD_MODE} Build Complete!!!`)
   })
