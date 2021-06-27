@@ -1,0 +1,1 @@
+(self.webpackChunkmina_template=self.webpackChunkmina_template||[]).push([[430],{1763:()=>{}},e=>{"use strict";var a;a=1763,e(e.s=a)}]);
