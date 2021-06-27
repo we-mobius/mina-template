@@ -20,7 +20,7 @@ module.exports = {
     // purgecss configurations: https://purgecss.com/configuration.html
     // Issues that matter: https://github.com/FullHuman/purgecss/issues/110
     require('@fullhuman/postcss-purgecss')({
-      content: ['./config/**/*.js', './src/**/*.js', './src/**/*.html', './src/**/*.hbs', './src/**/*.handlebars'],
+      content: ['./config/**/*.js', './src/**/*.js', './src/**/*.html', './src/**/*.wxml', './src/**/*.json', './src/**/*.hbs', './src/**/*.handlebars'],
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
       fontFace: false,
       keyframes: false,

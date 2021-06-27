@@ -1,3 +1,7 @@
 /* Stylesheets named starts with "_" will not be packed into seperate file */
 /* These stylesheets called "implicit stylesheet"  */
 /* Import implicit stylesheet in normal stylesheet with "@import" to use them */
+
+/*! purgecss start ignore */
+
+/*! purgecss end ignore */
