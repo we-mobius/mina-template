@@ -6,7 +6,6 @@ dist/
 release/
 typings/
 .temp
-packed/
 
 # Logs
 logs
