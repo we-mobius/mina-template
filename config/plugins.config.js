@@ -78,4 +78,4 @@ const MINARuntime = new MINARuntimePlugin()
 export const getDevelopmentPlugins = () => [indexHtmlPack, MINAWebpack, MINARuntime]
 export const getBuildPlugins = () => [indexHtmlPack, MINAWebpack, MINARuntime]
 export const getProductionPlugins = () => [indexHtmlPack, bundleAnalyzerForWeb, MINAWebpack, MINARuntime, bundleAnalyzerForMINA]
-export const getReleasePlugins = () => [commonClean]
+export const getReleasePlugins = () => []

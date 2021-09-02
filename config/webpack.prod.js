@@ -1,5 +1,4 @@
 import { rootResolvePath } from '../scripts/utils.js'
-import { getMobiusConfig } from './mobius.config.js'
 import { getProductionLoaders } from './loaders.config.js'
 import { getProductionPlugins } from './plugins.config.js'
 
@@ -123,10 +122,10 @@ const minaConfig = {
               name: (resourcePath) => {
                 console.log(`【resourcePath】 CSS to file: start -> ${resourcePath}`)
                 // resourcePath
-                //   -> D:\Files\CodeSpace\mobius-project-workspace\mina-template\src\mina\pages\test\test.css
+                //   -> D:\Files\CodeSpace\mobius-project-workspace\mina-template\src\ts\mina\pages\test\test.css
                 // relativePath
                 //   -> pages\test\test.css
-                const relativePath = path.relative(rootResolvePath('src/mina'), resourcePath)
+                const relativePath = path.relative(rootResolvePath('src/ts/mina'), resourcePath)
                 // parsed
                 //   -> { root: '', dir: 'pages\\test', base: 'test.css', ext: '.css', name: 'test' }
                 const { dir, name } = path.parse(relativePath)
@@ -181,16 +180,16 @@ const minaConfig = {
         toType: 'dir'
       },
       {
-        from: './src/mina',
+        from: './src/ts/mina',
         // to 可以写相对 webpack.config.output.path 的路径，比如 './mina'
         // 但 CopyPlugin 插件的文档中没有明确说明 to 最终路径的计算规则
         // 所以我个人推荐手动计算绝对路径，如下
         to: MINA_OUTPUT_PATH,
         toType: 'dir',
-        ignore: ['**/*.js', '**/*.css']
+        ignore: ['**/*.js', '**/*.ts', '**/*.d.ts', '**/*.css']
       },
       {
-        from: './src/mina/workers',
+        from: './src/ts/mina/workers',
         to: path.resolve(MINA_OUTPUT_PATH, './workers'),
         toType: 'dir'
       }
@@ -204,8 +203,7 @@ const webConfig = {
   ...reusedConfigs,
   output: {
     filename: '[name].[contenthash:7].js',
-    path: WEB_OUTPUT_PATH,
-    publicPath: getMobiusConfig().publicPath
+    path: WEB_OUTPUT_PATH
   },
   module: {
     rules: [
@@ -273,8 +271,8 @@ export const getProductionConfig = () => ([{
   target: 'web',
   entry: {
     // NOTE: entry sort matters style cascading
-    static: './src/static.js',
-    index: './src/index.js'
+    static: './src/static.ts',
+    index: './src/index.ts'
   },
   ...webConfig
 }])

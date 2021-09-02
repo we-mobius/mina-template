@@ -1,0 +1,4 @@
+<view class="mobius-base mobius-size--fullview mobius-transition--none" data-theme="{{theme}}">
+  <view>{{message}}</view>
+  <navigator url="../theme/theme">navigate to theme page</navigator>
+</view>

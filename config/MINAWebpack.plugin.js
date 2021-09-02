@@ -9,7 +9,7 @@ const isObject = tar => Object.prototype.toString.call(tar) === '[object Object]
 
 // refer: https://github.com/listenzz/MyMina
 
-const MINADir = path.resolve(cwd(), './src/mina')
+const MINADir = path.resolve(cwd(), './src/ts/mina')
 
 const itemToPlugin = (context, item, name) => {
   if (Array.isArray(item)) {
@@ -55,28 +55,53 @@ export const grabEntries = (context) => {
     if (isArray(pages)) {
       pages.forEach(page => {
         const name = page.split('/').pop()
-        entries[name] = entries[name] || {
-          import: path.resolve(MINADir, `${page}.js`),
-          filename: `${page}.js`,
-          fullname: page
+        if (!entries[name]) {
+          let importPath = path.resolve(MINADir, `${page}.ts`)
+          let filename = `${page}.ts`
+          if (!fs.existsSync(importPath)) {
+            importPath = path.resolve(MINADir, `${page}.js`)
+            filename = `${page}.js`
+          }
+          entries[name] = {
+            import: importPath,
+            filename: filename,
+            fullname: page
+          }
         }
       })
     }
     if (isObject(usingComponents)) {
       Object.values(usingComponents).forEach(component => {
         const name = component.split('/').pop()
-        entries[name] = entries[name] || {
-          import: path.resolve(MINADir, `${component}.js`),
-          filename: `${component}.js`,
-          fullname: component
+        if (!entries[name]) {
+          let importPath = path.resolve(MINADir, `${component}.ts`)
+          let filename = `${component}.ts`
+          if (!fs.existsSync(importPath)) {
+            importPath = path.resolve(MINADir, `${component}.js`)
+            filename = `${component}.js`
+          }
+          entries[name] = {
+            import: importPath,
+            filename: filename,
+            fullname: component
+          }
         }
       })
     }
   })
-  entries.app = entries.app || {
-    import: './src/mina/app.js',
-    filename: 'app.js',
-    fullname: 'app'
+
+  if (!entries.app) {
+    let importPath = path.resolve(MINADir, 'app.ts')
+    let filename = 'app.ts'
+    if (!fs.existsSync(importPath)) {
+      importPath = path.resolve(MINADir, 'app.js')
+      filename = 'app.js'
+    }
+    entries.app = {
+      import: importPath,
+      filename: filename,
+      fullname: 'app'
+    }
   }
 
   css.forEach(item => {
@@ -112,7 +137,7 @@ export class MINAWebpackPlugin {
     }
 
     Object.entries(this.entries)
-      .filter(([name, detail]) => detail.import.endsWith('.js'))
+      .filter(([name, detail]) => detail.import.endsWith('.js') || detail.import.endsWith('.ts'))
       .map(([name, detail]) => {
         // ! './' is necessary
         detail.relativeToRoot = './' + path.relative(context, detail.import)

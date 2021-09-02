@@ -12,15 +12,8 @@ const PATHS = {
   output: rootResolvePath('release')
 }
 
-export const getReleaseConfig = () => ({
+const reusedConfigs = {
   mode: 'production',
-  entry: {
-    // mobius: './src/mobius.release.entry.js',
-    // addons: './src/addons.release.entry.js'
-  },
-  output: {
-    path: PATHS.output
-  },
   module: {
     rules: [
       {
@@ -81,4 +74,71 @@ export const getReleaseConfig = () => ({
   ],
   devtool: 'hidden-nosources-source-map'
 }
-)
+
+export const getReleaseConfig = () => ([
+  {
+    target: 'web',
+    entry: {
+      'css-base': './src/css-base.release.entry.ts'
+    },
+    output: {
+      filename: '[name].js',
+      path: PATHS.output
+    },
+    ...reusedConfigs
+  },
+  {
+    target: 'node',
+    entry: {
+      main: './src/main.release.entry.ts'
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(PATHS.output, './modules/umd'),
+      // @refer: https://webpack.js.org/configuration/output/#outputlibrarytarget
+      // @refer: https://webpack.js.org/configuration/output/#outputlibrarytype
+      // libraryTarget: 'umd',
+      library: {
+        name: 'MobiusMINAMain',
+        type: 'umd'
+      },
+      // @refer: https://webpack.js.org/configuration/output/#outputglobalobject
+      globalObject: 'this',
+      umdNamedDefine: true
+    },
+    ...reusedConfigs
+  },
+  {
+    target: 'node',
+    entry: {
+      main: './src/main.release.entry.ts'
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(PATHS.output, './modules/cjs'),
+      library: {
+        name: 'MobiusMINAMain',
+        type: 'commonjs'
+      },
+      globalObject: 'this'
+    },
+    ...reusedConfigs
+  },
+  {
+    target: 'web',
+    entry: {
+      main: './src/main.release.entry.ts'
+    },
+    experiments: {
+      outputModule: true
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(PATHS.output, './modules/esm'),
+      library: {
+        type: 'module'
+      }
+    },
+    ...reusedConfigs
+  }
+])

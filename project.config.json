@@ -1,6 +1,6 @@
 {
   "description": "项目配置文件",
-  "miniprogramRoot": "dev/",
+  "miniprogramRoot": "dev/mina/",
   "setting": {
     "urlCheck": true,
     "es6": false,

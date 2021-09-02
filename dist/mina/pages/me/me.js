@@ -1,2 +1,0 @@
-require("./../../runtime"),require("./../../vendors"),(wx.webpackChunkmina_template=wx.webpackChunkmina_template||[]).push([[105],{353:(e,t,a)=>{"use strict";var s=a(862);const{themeRD:r}=(0,s.o)("app");Page({data:{message:"Hello, MINA template! Me page!",theme:""},onLoad:function(e){r.subscribe((({value:e})=>{this.setData({theme:e})}))}})}},e=>{"use strict";e.O(0,[216],(()=>{return t=353,e(e.s=t);var t}));e.O()}]);
-//# sourceMappingURL=me.js.map
