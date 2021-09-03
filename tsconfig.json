@@ -67,7 +67,7 @@
         "./src/ts/libs/mobius-mina.ts"
       ],
       "Business/*": [
-        "src/ts/business/*"
+        "./src/ts/business/*"
       ],
       "FreeBusiness/*": [
         "./src/ts/business-free/*"

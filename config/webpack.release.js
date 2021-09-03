@@ -103,7 +103,7 @@ export const getReleaseConfig = () => ([
         type: 'umd'
       },
       // @refer: https://webpack.js.org/configuration/output/#outputglobalobject
-      globalObject: 'this',
+      globalObject: 'globalThis',
       umdNamedDefine: true
     },
     ...reusedConfigs
@@ -118,9 +118,8 @@ export const getReleaseConfig = () => ([
       path: path.resolve(PATHS.output, './modules/cjs'),
       library: {
         name: 'MobiusMINAMain',
-        type: 'commonjs'
-      },
-      globalObject: 'this'
+        type: 'commonjs2'
+      }
     },
     ...reusedConfigs
   },
